@@ -4,7 +4,8 @@
 
 const sysConfig = {
     //controller文件夹
-    controller_dir:'controller'
+    controller_dir:'controller',
+    requestLog:true,
 }
 
 module.exports = sysConfig;
