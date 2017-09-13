@@ -1,0 +1,76 @@
+{
+  "appenders": {
+    "consoleAppender": {
+      "type": "console"
+    },
+    "logFileAppender": {
+      "type": "file",
+      "filename": "./logs/file.log",
+      "maxLogSize": 104800,
+      "backups": 100
+    },
+    "logDateFileAppender": {
+      "type": "dateFile",
+      "filename": "./logs/date",
+      "alwaysIncludePattern": true,
+      "pattern": "-yyyy-MM-dd-hh.log"
+    }
+  },
+  "categories": {
+    "default": {
+      "appenders": [
+        "consoleAppender",
+        "logFileAppender",
+        "logDateFileAppender"
+      ],
+      "level": "debug"
+    }
+  },
+  "customCategories": {
+    "frame": {
+      "dev": {
+        "appenders": [
+          "consoleAppender",
+          "logFileAppender"
+        ],
+        "level": "debug"
+      },
+      "test": {
+        "appenders": [
+          "consoleAppender",
+          "logDateFileAppender"
+        ],
+        "level": "debug"
+      },
+      "product": {
+        "appenders": [
+          "logDateFileAppender"
+        ],
+        "level": "warn"
+      }
+    },
+    "business": {
+      "dev": {
+        "appenders": [
+          "consoleAppender",
+          "logFileAppender"
+        ],
+        "level": "debug"
+      },
+      "test": {
+        "appenders": [
+          "consoleAppender",
+          "logDateFileAppender"
+        ],
+        "level": "debug"
+      },
+      "product": {
+        "appenders": [
+          "logDateFileAppender"
+        ],
+        "level": "warn"
+      }
+    }
+  },
+  "logEnvironment": "dev"
+}

@@ -6,7 +6,7 @@ const controllerScan = require('./frame/controller/controllerScan');
 const sysConfig = require('./config/sysConfig');
 const appResponseCtrl = require('./frame/controller/appResponseCtrl');
 const bodyParser = require('koa-bodyparser');
-const requestLog = require('./frame/controller/requestLog')
+const koaLogger = require('koa-logger')
 
 
 console.log('-------------------------------------启动服务-----------------------------------------------')
@@ -14,15 +14,7 @@ const app = new Koa();
 
 const server_port = 3200;
 
-app.use(async (ctx, next) => {
-    await next();
-})
-
-app.use(async (ctx, next) => {
-    let start = new Date().getTime();
-    await next();
-    console.log(`耗时:${new Date().getTime() - start}`);
-})
+app.use(koaLogger())
 
 app.use(bodyParser());
 
@@ -32,8 +24,6 @@ app.use(async (ctx, next) => {
     appResponseCtrl(ctx, ctx.response.status);
     await next();
 })
-
-app.use(requestLog());
 
 
 app.listen(server_port);
