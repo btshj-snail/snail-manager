@@ -29,6 +29,12 @@ const loginIn = async (ctx, next) => {
 
 }
 
+const loginPage = async (ctx,next)=>{
+    ctx.response.body = "HELLO";
+    await next();
+}
+
 module.exports = {
     'POST /loginIn': loginIn,
+    'GET /loginPage': loginPage,
 }

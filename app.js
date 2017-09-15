@@ -6,17 +6,27 @@ const controllerScan = require('./frame/controller/controllerScan');
 const sysConfig = require('./config/sysConfig');
 const appResponseCtrl = require('./frame/controller/appResponseCtrl');
 const bodyParser = require('koa-bodyparser');
-const koaLogger = require('koa-logger')
+const koaLogger = require('koa-logger');
+const session = require('koa-session2');
 
 
 console.log('-------------------------------------启动服务-----------------------------------------------')
 const app = new Koa();
 
-const server_port = 3200;
+const server_port = 3300;
 
 app.use(koaLogger())
 
 app.use(bodyParser());
+
+//session
+
+app.use(session({
+    store:new SessionStore()
+}));
+
+
+
 
 app.use(controllerScan(sysConfig.controller_dir))
 

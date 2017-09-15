@@ -7,50 +7,71 @@ const fs = require('fs');
 const path = require('path');
 const sysConfig = require('../../config/sysConfig');
 const fileUtils = require('../../utils/fileUtils');
+const log4jsHelper = require('../log/log4jsHelper');
+
+let allRouter = [];
+
+function isExitsRouter(routerPath) {
+    let index = allRouter.findIndex(item => item == routerPath);
+    return index != -1;
+}
 
 
-function addMapping(router,mapping){
-    for(let url in mapping){
-        if(url.startsWith('GET ')){
+function addMapping(router, mapping) {
+    for (let url in mapping) {
+        try {
+            if (isExitsRouter(url)) {
+                throw `${url} 重复定义`
+            }
+        }
+        catch (ex) {
+            log4jsHelper.error(ex, 'frame');
+            return;
+        }
+
+        allRouter.push(url);
+
+
+        if (url.startsWith('GET ')) {
             let _path = url.substring(4);
-            router.get(_path,mapping[url]);
+            router.get(_path, mapping[url]);
             console.log(`添加路由:${url}`);
-        }else if(url.startsWith('POST ')){
+        } else if (url.startsWith('POST ')) {
             let _path = url.substring(5);
-            router.post(_path,mapping[url]);
+            router.post(_path, mapping[url]);
             console.log(`添加路由:${url}`);
-        }else{
+        } else {
             console.log(`无效的地址:${url}`);
         }
     }
 }
 
-function addControllers(router,dir){
-    let c_path = path.join(process.cwd(),dir);
+function addControllers(router, dir) {
+    let c_path = path.join(process.cwd(), dir);
     let exit = fs.existsSync(c_path);
 
-    if(!exit){
+    if (!exit) {
         throw `${c_path}文件夹不存在`;
     }
 
     let files = fileUtils.queryAllFilesSync(c_path);
 
-    let js_files = files.filter(f=>{
+    let js_files = files.filter(f => {
         return f.endsWith('.js');
     })
 
 
-    for(let f of js_files){
+    for (let f of js_files) {
         let mapping = require(f);
-        addMapping(router,mapping);
+        addMapping(router, mapping);
     }
 }
 
-module.exports = function (dir){
-    if(!dir){
+module.exports = function (dir) {
+    if (!dir) {
         dir = 'controller'
     }
     let router = require('koa-router')();
-    addControllers(router,dir);
+    addControllers(router, dir);
     return router.routes();
 }

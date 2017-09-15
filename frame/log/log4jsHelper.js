@@ -83,11 +83,8 @@ const log4jsHelper = {
 
         loggerInstance[category].warn(msg)
     },
-    error(msg,exp,category="default"){
+    error(msg,category="default"){
         msg = msg || "";
-        if(exp!=null){
-            msg += "\r\n"+exp
-        }
         loggerInstance[category].error(msg)
     }
 }
