@@ -6,7 +6,7 @@
 const snailUtils  = require('../../utils/snailUtils');
 
 class SessionStoreMap {
-    static instance = null;
+
     constructor() {
         if(!!SessionStoreMap.instance){
             return SessionStoreMap.instance;

@@ -8,6 +8,7 @@ const appResponseCtrl = require('./frame/controller/appResponseCtrl');
 const bodyParser = require('koa-bodyparser');
 const koaLogger = require('koa-logger');
 const session = require('koa-session2');
+const SessionStore = require('./frame/session/sessionStore');
 
 
 console.log('-------------------------------------启动服务-----------------------------------------------')
