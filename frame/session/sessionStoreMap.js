@@ -5,19 +5,25 @@
 
 const snailUtils  = require('../../utils/snailUtils');
 
+
+let __instance = (function(){
+    let instance;
+    return (newInstance)=>{
+        if(newInstance) instance = newInstance;
+        return instance;
+    }
+}())
+
 class SessionStoreMap {
 
     constructor() {
-        if(!!SessionStoreMap.instance){
-            return SessionStoreMap.instance;
-        }
-        SessionStoreMap.instance = this;
+        if(__instance()) return __instance();
 
         this._store = {};
         this.maxAge = 30*60*1000; //30分钟
 
         this._clearTimeout();
-
+        __instance(this);
     }
 
     getID(){

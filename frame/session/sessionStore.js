@@ -31,3 +31,6 @@ class SessionStore extends Store {
 
 
 }
+
+
+module.exports = SessionStore;

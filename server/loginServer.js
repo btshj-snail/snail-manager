@@ -4,7 +4,7 @@
 'use strict'
 
 const UserDao = require('../dao/userDao');
-
+const log4jsHelper = require('../frame/log/log4jsHelper');
 const userDao = new UserDao();
 
 class LoginServer {
@@ -18,7 +18,9 @@ class LoginServer {
      */
     loginIn(userName,passwd){
         let user = userDao.queryByName(userName);
+        log4jsHelper.debug(`密码:${user.passwd},${passwd}`);
         if(user && user.passwd==passwd){
+
             return user;
         }
         return null;

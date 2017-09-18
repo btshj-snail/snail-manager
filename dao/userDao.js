@@ -15,8 +15,9 @@ class UserDao{
      * @returns {*}
      */
     queryByName(userName) {
-        log4jsHelper.debug("33345",'frame');
-        if (userName = "jack") {
+
+        if (userName == "jack") {
+            log4jsHelper.debug('名字成功匹配');
             return {
                 userName: 'jack',
                 age: 18,

@@ -22,6 +22,16 @@ let snailUtils = {
         }
 
         return result;
+    },
+
+
+    containInAry(str,ary){
+        for(let i=0,l=ary.length;i<l;i++){
+            if(str.indexOf(ary[i])!=-1){
+                return true;
+            }
+        }
+        return false;
     }
 
 }
