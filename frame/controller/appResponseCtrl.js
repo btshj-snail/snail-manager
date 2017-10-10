@@ -4,7 +4,7 @@
 'use strict'
 
 const appResponseCtrl = function(ctx,status){
-
+    ctx.response.type = "application/json";
 }
 
 const r_404 = function(){

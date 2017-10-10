@@ -22,22 +22,24 @@ const path = require('path');
  * @param next
  */
 async function isLoginInterceptor(ctx,next){
-    let reqPath = ctx.request.path;
-    let user = ctx.session;
-    let ary = reqPath.split(".");
-    let suffix = ary[ary.length-1];
-    if(sysConfig.enableAskByNoPermission.findIndex(item=>item==suffix)!=-1){
-        await next();
-    }else{
-        if(!user.userName && !snailUtils.containInAry(reqPath,sysConfig.enableAskPathByNoLogin)){
-            log4jsHelper.warn("未登录的请求,跳转到登录界面")
-            ctx.redirect("/login.html");
-        }else{
-            await next();
-        }
-    }
+    // let reqPath = ctx.request.path;
+    // let user = ctx.session;
+    // let ary = reqPath.split(".");
+    // let suffix = ary[ary.length-1];
+    // if(sysConfig.enableAskByNoPermission.findIndex(item=>item==suffix)!=-1){
+    //     await next();
+    // }else{
+    //     if(!user.userName && !snailUtils.containInAry(reqPath,sysConfig.enableAskPathByNoLogin)){
+    //         log4jsHelper.warn("未登录的请求,跳转到登录界面")
+    //         ctx.redirect("/login.html");
+    //     }else{
+    //         await next();
+    //     }
+    // }
 
 
+
+    await next();
 
 
 }
