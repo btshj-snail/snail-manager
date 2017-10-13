@@ -41,11 +41,10 @@ app.use(session({
     store: {
         host:'127.0.0.1',
         port:6379,
-        ttl: 3600,
+        ttl: 30*60,//秒为单位
     },
     cookie:{
         signed:true,
-        maxAge:30*60*1000
     }
 }))
 
