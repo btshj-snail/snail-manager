@@ -16,7 +16,7 @@ class BaseDomain extends Domain{
         //id
         this.id="";
         //创建时间
-        this.createDate="";
+        this.createDate=new Date().getTime();
 
 
 
@@ -29,20 +29,5 @@ class BaseDomain extends Domain{
         if(createDate!==undefined) this.createDate = createDate;
     }
 
-    getId(){
-        return this.id;
-    }
-
-    setId(v){
-        this.id = v;
-    }
-
-    getCreateDate(){
-        return this.createDate;
-    }
-
-    setCreateDate(v){
-        this.createDate = v;
-    }
 
 }

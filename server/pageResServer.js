@@ -1,6 +1,7 @@
 /**
- * Created by snail on 17-10-13.
+ * Created by snail on 17-10-16.
  */
+
 'use strict'
 
 const log4jsHelper = require('../frame/log/log4jsHelper');
@@ -16,30 +17,67 @@ const data = [
     {id: "22", parentId: "2", name: "系统设置", pageUrl: "", icon: "", isPage: true, position: "side"},
     {id: "23", parentId: "2", name: "修改密码", pageUrl: "", icon: "", isPage: true, position: "side"},
 ]
-class pageResDao{
-    constructor(){};
+
+class PageResServer{
+    constructor(){
+
+    }
 
     /**
-     * 查询所有菜单信息
+     * 获取所有菜单信息
      */
-    queryAllMenuInfo(){
+    getAllMenuInfo(){
         return data;
     }
 
     /**
-     * 查询所有子孙节点
+     * 获取所有子孙节点
+     * @param parentId
+     * @returns {Array}
      */
-    queryChildrenAndGrandsonMenu(parentId){
-
+    getChildrenAndGrandsonMenu(parentId){
+        if(!parentId) parentId = "";
+        let result = [];
+        this._getChildrenAndGrandsonMenu(parentId,result);
+        return result;
     }
 
     /**
      * 获取所有子节点
-     * @param parentId
+     * @param pId
      */
-    queryChildrenMenu(parentId){
+    getChildrenMenu(pId){
+        let result = [];
+        for(let i=0,l=data.length;i<l;i++){
+            let {parentId} = data[i];
+            if(pId==parentId){
+                result.push(data[i]);
+            }
+        }
+        return result;
+    }
 
+
+
+    /**
+     * 获取所有子孙节点
+     * @param pId
+     * @param store
+     * @private
+     */
+    _getChildrenAndGrandsonMenu(pId,store=[]){
+        //todo 获取所有节点信息,然后再进行噻选
+        for(let i=0,l=data.length;i<l;i++){
+            let {parentId,isPage,id} = data[i];
+            if(pId==parentId){
+                store.push(data[i]);
+                if(!isPage){
+                    this._getChildrenAndGrandsonMenu(id,store);
+                }
+            }
+        }
     }
 }
 
-module.exports = UserDao;
+
+module.exports = PageResServer;
