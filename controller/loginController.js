@@ -36,7 +36,12 @@ const loginIn = async (ctx, next) => {
 const loginInfo = async (ctx, next) => {
     let user = ctx.session.loginInfo;
     console.log(user);
-    resCon.setOK(ctx,user);
+    if(!user){
+        resCon.setError(ctx);
+    }else{
+        resCon.setOK(ctx,user);
+    }
+
     await next();
 }
 
