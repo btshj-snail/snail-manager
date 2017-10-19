@@ -6,7 +6,7 @@
 const PageResServer = require( '../server/pageResServer');
 const resCon = require('../frame/controller/responseConstruct');
 const {CODE_NOT_LOGGED} = require('../constant/errorCode');
-const pageResServer = new PageResServer;
+const pageResServer = new PageResServer();
 
 
 /**

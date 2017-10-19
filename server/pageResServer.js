@@ -7,11 +7,11 @@
 const log4jsHelper = require('../frame/log/log4jsHelper');
 const data = [
     {id: "1", parentId: "", name: "权限管理", pageUrl: "", icon: "", isPage: false, position: "top"},
-    {id: "11", parentId: "1", name: "界面资源", pageUrl: "", icon: "", isPage: true, position: "side"},
-    {id: "12", parentId: "1", name: "机构管理", pageUrl: "", icon: "", isPage: true, position: "side"},
-    {id: "13", parentId: "1", name: "角色管理", pageUrl: "", icon: "", isPage: true, position: "side"},
-    {id: "14", parentId: "1", name: "用户管理", pageUrl: "", icon: "", isPage: true, position: "side"},
-    {id: "15", parentId: "1", name: "授权管理", pageUrl: "", icon: "", isPage: true, position: "side"},
+    {id: "11", parentId: "1", name: "界面资源", pageUrl: "/admin/pageResMgView", icon: "", isPage: true, position: "side"},
+    {id: "12", parentId: "1", name: "机构管理", pageUrl: "/admin/userMgView", icon: "", isPage: true, position: "side"},
+    {id: "13", parentId: "1", name: "角色管理", pageUrl: "/admin/roleMgView", icon: "", isPage: true, position: "side"},
+    {id: "14", parentId: "1", name: "用户管理", pageUrl: "/admin/userMgView", icon: "", isPage: true, position: "side"},
+    {id: "15", parentId: "1", name: "授权管理", pageUrl: "/admin/aclView", icon: "", isPage: true, position: "side"},
     {id: "2", parentId: "", name: "偏好设置", pageUrl: "", icon: "", isPage: false, position: "top"},
     {id: "21", parentId: "2", name: "工作台管理", pageUrl: "", icon: "", isPage: true, position: "side"},
     {id: "22", parentId: "2", name: "系统设置", pageUrl: "", icon: "", isPage: true, position: "side"},
