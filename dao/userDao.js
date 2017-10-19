@@ -16,12 +16,13 @@ class UserDao{
      */
     queryByName(userName) {
 
-        if (userName == "jack") {
+        if (userName == "admin") {
             log4jsHelper.debug('名字成功匹配');
             return {
-                userName: 'jack',
+                id:"admin",
+                userName: 'admin',
                 age: 18,
-                passwd: '12345678'
+                passwd: '1111'
             }
         }
         return null;
