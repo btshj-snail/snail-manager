@@ -6,21 +6,21 @@
 
 const log4jsHelper = require('../frame/log/log4jsHelper');
 const data = [
-    {id: "1", parentId: "", name: "权限管理", pageUrl: "", icon: "", isPage: false, position: "top"},
-    {id: "11", parentId: "1", name: "界面资源", pageUrl: "/admin/pageResMgView", icon: "", isPage: true, position: "side"},
-    {id: "12", parentId: "1", name: "机构管理", pageUrl: "/admin/userMgView", icon: "", isPage: true, position: "side"},
-    {id: "13", parentId: "1", name: "角色管理", pageUrl: "/admin/roleMgView", icon: "", isPage: true, position: "side"},
-    {id: "14", parentId: "1", name: "用户管理", pageUrl: "/admin/userMgView", icon: "", isPage: true, position: "side"},
-    {id: "15", parentId: "1", name: "授权管理", pageUrl: "/admin/aclView", icon: "", isPage: true, position: "side"},
-    {id: "2", parentId: "", name: "偏好设置", pageUrl: "", icon: "", isPage: false, position: "top"},
-    {id: "21", parentId: "2", name: "工作台管理", pageUrl: "", icon: "", isPage: true, position: "side"},
-    {id: "22", parentId: "2", name: "系统设置", pageUrl: "", icon: "", isPage: true, position: "side"},
-    {id: "23", parentId: "2", name: "修改密码", pageUrl: "", icon: "", isPage: true, position: "side"},
-    {id: "3", parentId: "", name: "仓储管理", pageUrl: "", icon: "", isPage: false, position: "top"},
-    {id: "31", parentId: "3", name: "仓库运维", pageUrl: "", icon: "", isPage: false, position: "side"},
-    {id: "311", parentId: "31", name: "仓库管理", pageUrl: "", icon: "", isPage: true, position: "side"},
-    {id: "312", parentId: "31", name: "仓库申请", pageUrl: "", icon: "", isPage: true, position: "side"},
-    {id: "313", parentId: "31", name: "仓库审核", pageUrl: "", icon: "", isPage: true, position: "side"},
+    {id: "1", parentId: "", name: "Author Manager", pageUrl: "", icon: "", isPage: false, position: "top"},
+    {id: "11", parentId: "1", name: "Page Resource", pageUrl: "/admin/pageResMgView", icon: "", isPage: true, position: "side"},
+    {id: "12", parentId: "1", name: "Organization Manager", pageUrl: "/admin/userMgView", icon: "", isPage: true, position: "side"},
+    {id: "13", parentId: "1", name: "Role Manager", pageUrl: "/admin/roleMgView", icon: "", isPage: true, position: "side"},
+    {id: "14", parentId: "1", name: "User Manager", pageUrl: "/admin/userMgView", icon: "", isPage: true, position: "side"},
+    {id: "15", parentId: "1", name: "Acl Manager", pageUrl: "/admin/aclView", icon: "", isPage: true, position: "side"},
+    {id: "2", parentId: "", name: "Preference", pageUrl: "", icon: "", isPage: false, position: "top"},
+    {id: "21", parentId: "2", name: "Work Manager", pageUrl: "", icon: "", isPage: true, position: "side"},
+    {id: "22", parentId: "2", name: "System Manager", pageUrl: "", icon: "", isPage: true, position: "side"},
+    {id: "23", parentId: "2", name: "Update Password", pageUrl: "", icon: "", isPage: true, position: "side"},
+    {id: "3", parentId: "", name: "Store Manager", pageUrl: "", icon: "", isPage: false, position: "top"},
+    {id: "31", parentId: "3", name: "Store Stick", pageUrl: "", icon: "", isPage: false, position: "side"},
+    {id: "311", parentId: "31", name: "Store Manager", pageUrl: "", icon: "", isPage: true, position: "side"},
+    {id: "312", parentId: "31", name: "Store apply", pageUrl: "", icon: "", isPage: true, position: "side"},
+    {id: "313", parentId: "31", name: "Store audit", pageUrl: "", icon: "", isPage: true, position: "side"},
 ]
 
 class PageResServer{
