@@ -7,10 +7,8 @@ const Koa = require('koa');
 const cors = require('koa-cors');
 const controllerScan = require('./frame/controller/controllerScan');
 const sysConfig = require('./config/sysConfig');
-const appResponseCtrl = require('./frame/controller/appResponseCtrl');
 const bodyParser = require('koa-bodyparser');
 const koaLogger = require('koa-logger');
-// const session = require('koa-session2');
 const session = require('koa-session-redis');
 const staticSever = require('koa-static');
 const cookie = require('cookie-signature');
@@ -27,7 +25,6 @@ app.keys = ["SNAILCOOKIE"];
 app.use(cors(
     {
         credentials: true,
-        // origin: "http://127.0.0.1:8083",
         methods: ["POST","GET","PUT","DELETE"],
     }
 ));
@@ -55,17 +52,11 @@ app.use(staticSever(path.join(process.cwd(), "./webApp")))
 
 app.use(controllerScan(sysConfig.controller_dir))
 
-app.use(async (ctx, next) => {
-    appResponseCtrl(ctx, ctx.response.status);
-    await next();
-})
-
 
 app.listen(server_port);
 
 app.on('error', function (ex) {
-    console.log(ex)
-    console.log('启动失败')
+   console.log(ex)
 })
 
 console.log('app started at port ' + server_port)

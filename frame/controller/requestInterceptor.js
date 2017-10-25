@@ -6,8 +6,8 @@
 const sysConfig = require("../../config/sysConfig");
 const snailUtils = require("../../utils/snailUtils");
 const log4jsHelper = require("../../frame/log/log4jsHelper");
-const path = require('path');
-
+const errorCode = require('../../constant/errorCode');
+const resCon = require('../../frame/controller/responseConstruct');
 
 
 /**
@@ -22,24 +22,21 @@ const path = require('path');
  * @param next
  */
 async function isLoginInterceptor(ctx,next){
-    // let reqPath = ctx.request.path;
-    // let user = ctx.session;
-    // let ary = reqPath.split(".");
-    // let suffix = ary[ary.length-1];
-    // if(sysConfig.enableAskByNoPermission.findIndex(item=>item==suffix)!=-1){
-    //     await next();
-    // }else{
-    //     if(!user.userName && !snailUtils.containInAry(reqPath,sysConfig.enableAskPathByNoLogin)){
-    //         log4jsHelper.warn("未登录的请求,跳转到登录界面")
-    //         ctx.redirect("/login.html");
-    //     }else{
-    //         await next();
-    //     }
-    // }
 
+    let user = ctx.session.loginInfo;
 
+    let {path} = ctx.request;
+    if(sysConfig.enableAskPathByNoLogin.findIndex(item=>item==path)!=-1){
+        log4jsHelper.info(`该请求可不登录`,'frame');
+        await next();
+    }else if(!user){
+        log4jsHelper.info(`登录校验未通过`,'frame');
+        resCon.setError(ctx,errorCode.CODE_NOT_LOGGED,"未登录");
+    }else{
+        ctx.session.loginInfo = user;
+        await next();
+    }
 
-    await next();
 
 
 }

@@ -4,9 +4,7 @@
 
 const resCon = require('../frame/controller/responseConstruct');
 const LoginServer = require('../server/loginServer');
-const sessionStoreHelper = require('../frame/session/sessionStoreHelper');
 const fs = require("fs");
-const path = require("path");
 
 const loginServer = new LoginServer();
 
@@ -35,7 +33,6 @@ const loginIn = async (ctx, next) => {
 
 const loginInfo = async (ctx, next) => {
     let user = ctx.session.loginInfo;
-    console.log(user);
     if(!user){
         resCon.setError(ctx);
     }else{
@@ -45,7 +42,14 @@ const loginInfo = async (ctx, next) => {
     await next();
 }
 
+
+const loginOut = async (ctx, next) => {
+    ctx.session.loginInfo = null;
+    resCon.setOK(ctx);
+};
+
 module.exports = {
     'POST /loginIn': loginIn,
     'POST /loginInfo': loginInfo,
+    'POST /loginOut': loginOut,
 }

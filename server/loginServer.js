@@ -18,9 +18,7 @@ class LoginServer {
      */
     loginIn(userName,passwd){
         let user = userDao.queryByName(userName);
-        log4jsHelper.debug(`密码:${user.passwd},${passwd}`);
         if(user && user.passwd==passwd){
-
             return user;
         }
         return null;

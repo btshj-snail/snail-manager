@@ -17,7 +17,7 @@ class UserDao{
     queryByName(userName) {
 
         if (userName == "admin") {
-            log4jsHelper.debug('名字成功匹配');
+            log4jsHelper.debug('名字成功匹配','frame');
             return {
                 id:"admin",
                 userName: 'admin',

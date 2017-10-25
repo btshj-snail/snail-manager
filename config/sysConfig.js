@@ -6,7 +6,7 @@ const sysConfig = {
     //controller文件夹
     controller_dir:'controller',
     requestLog:true,
-    enableAskPathByNoLogin:["login.html","loginIn"],
+    enableAskPathByNoLogin:["/loginIn"],
     enableAskByNoPermission:["js","png","gif","jpg"]
 }
 

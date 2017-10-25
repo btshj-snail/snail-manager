@@ -36,7 +36,7 @@ const getAllPageResInfo = async (ctx, next) => {
 const getPageResByParent = async (ctx, next) => {
     let {parentId,paging} = ctx.request.body;
     let result = pageResServer.getPageResByParent(parentId,paging);
-    log4jsHelper.debug(result);
+    log4jsHelper.debug(result,'frame');
     resCon.setOK(ctx, result);
     await  next();
 }
@@ -60,9 +60,20 @@ const getMenusByCurrentUser = async (ctx, next) => {
     await next();
 }
 
+const addPageRes = async (ctx, next) => {
+    let data= ctx.request.body;
+    if(!data.name || !data.position){
+        resCon.setError(ctx);
+        await next();
+        return;
+    }
+    pageResServer.addPageRes(data);
+};
+
 
 module.exports = {
     'POST /getAllPageResInfo': getAllPageResInfo,
     'POST /getPageResByParent': getPageResByParent,
     'POST /getMenusByCurrentUser': getMenusByCurrentUser,
+    'POST /addPageRes': addPageRes,
 }

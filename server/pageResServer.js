@@ -60,8 +60,6 @@ class PageResServer{
      * @returns {Object}
      */
     getPageResByParent(parentId,paging){
-        log4jsHelper.error("-------------------------------------------------");
-        log4jsHelper.error(paging);
         let newData = data.filter(item=>parentId==item.parentId);
         let totalSize = newData.length;
         if (!!paging) {
@@ -85,6 +83,16 @@ class PageResServer{
             return [];
         }
         return data;
+    }
+
+
+    /**
+     * 新增
+     * @param object
+     */
+    addPageRes(object){
+        let {parentId,name,pageUrl,icon,isPage,position} = object;
+        data.push(object);
     }
 
 }
